@@ -7,9 +7,9 @@ USE employee_db;
 --Employee Table--
 CREATE TABLE employee
 (
-    id INT AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30),
-    lasst_name VARCHAR(30),
+    last_name VARCHAR(30),
     role_id INT NULL,
     manager_id INT NULL,
     PRIMARY KEY (id),
