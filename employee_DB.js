@@ -31,7 +31,7 @@ const employeeOptions = function () {
                 await viewEmployees();
                 break;
 
-            case "View all roles":
+            case 'View all roles':
                  await viewRoles();
                 break;
 
