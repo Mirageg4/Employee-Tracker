@@ -1,12 +1,14 @@
-const connection = require("./db,js");
+const connection = require("./db.js");
 const inquirer = require("inquirer");
+
+employeeOptions()
+
 const mysql = require("mysql");
 const conTable = require("console.table");
 
 //Inquirer prompts for desired actions
-const employeeOptions = function () {
-    inquirer
-    .prompt({
+async function employeeOptions() {
+    await inquirer.prompt({
         type: 'list',
         name: 'employeeOptions',
         message: 'Use arrow keys to select following options',
@@ -20,28 +22,26 @@ const employeeOptions = function () {
             'Update employee role',
             'Remove employee',
         ]
-    })
-
-//
-    .then(function(optionChoice){
-        console.log(optionChoice);
-
-        switch (optionChoice) {
+    }).then(({ employeeOptions }) => {
+        
+        console.log(employeeOptions);
+    
+        switch (employeeOptions) {
             case 'View all employees':
-                await viewEmployees();
+                viewEmployees();
                 break;
-
+    
             case 'View all roles':
-                 await viewRoles();
+                viewRoles();
                 break;
-
+    
         }
-    });
+    })
+        
 
 };
 
-employeeOptions();
-// Allows user to VIEW ALL EMPLOYEES currently in the database
+// // Allows user to VIEW ALL EMPLOYEES currently in the database
 function viewEmployees() {
     console.log('Employees currently in database');
    let query =

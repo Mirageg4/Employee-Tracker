@@ -11,8 +11,12 @@ const connection = mysql.createConnection({
     database: "employee_db",
 });
 
+
 connection.connect(function(err) {
-    if (err) throw err;
+    if (err) { 
+        console.log("Database Connection Error", err.message)
+        process.exit(1)
+    };
 });
 
 module.exports = connection;
