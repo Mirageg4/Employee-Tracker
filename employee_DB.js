@@ -106,13 +106,13 @@ function addEmployee() {
             {
                 type: "input",
                 message: "Please enter employee's first name",
-                name: "firstname"
+                name: "firstName"
             },
 
             {
                 type: "input",
                 message: "Please enter employee's last name",
-                name: "lastname"
+                name: "lastName"
             }
         ])
         .then(function (optionChoice) {
@@ -157,7 +157,7 @@ function updateRole() {
                     type: "list",
                     message: "select new role",
                     choices: ["Manager", "Employee"],
-                    name: "newrole"
+                    name: "newRole"
                 }
             ])
             .then(function (optionChoice) {
@@ -197,7 +197,7 @@ function addRole() {
             {
                 type: "input",
                 message: "Enter employee department id",
-                name: "addDepId"
+                name: "adddeptid"
             }
         ])
         .then(function (optionChoice) {
