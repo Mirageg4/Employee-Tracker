@@ -20,7 +20,7 @@
 <p>Github: <a href="https://github.com/Mirageg4/Employee-Tracker">Employee-Tracker</a></p>
 
 <hr>
-<img src ="./XXX.png"/>
+<img src ="./ssTracker.png"/>
 <hr>              
 <p>License: Project is licensed under the MIT License. 
 See <a href ="LICENSE.md">LICENSE</a> file for details.
