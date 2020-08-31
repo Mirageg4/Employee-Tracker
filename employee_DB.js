@@ -3,14 +3,14 @@ const inquirer = require("inquirer");
 
 employeeOptions();
 
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const conTable = require("console.table");
 
 //Inquirer prompts for requested actions
 async function employeeOptions() {
     await inquirer.prompt({
         type: "list",
-        name: "employeeOptions",
+        name: "employeeOptions", 
         message: "Use arrow keys to select following options",
         choices: [
             "View all employees",
@@ -39,7 +39,7 @@ async function employeeOptions() {
                 viewDepartments();
                 break;  
                 
-            case "Add employee":
+            case "Add an employee":
             addEmployee();
             break;      
             
@@ -55,9 +55,9 @@ async function employeeOptions() {
             updateRole();
             break;
 
-            case "Remove employee":
-            removeEmployee();
-            break;
+            // case "Remove employee":
+            // removeEmployee();
+            // break;
         }
     })
         
