@@ -27,35 +27,35 @@ async function employeeOptions() {
         console.log(employeeOptions);
     
         switch (employeeOptions) {
-            case "View All Employees":
+            case "View all employees":
                 viewEmployees();
                 break;
     
-            case "View Employee Roles":
+            case "View employee roles":
                 viewRoles();
                 break;
 
-            case "View Departments":
+            case "View departments":
                 viewDepartments();
                 break;  
                 
-            case "Add Employee":
+            case "Add employee":
             addEmployee();
             break;      
             
-            case "Add Employee Role":
+            case "Add employee role":
             addRole();
             break;
 
-            case "Add Department":
+            case "Add department":
             addDepartments();
             break;
 
-            case "Update Employee Role":
+            case "Update employee role":
             updateRole();
             break;
 
-            case "Remove Employee":
+            case "Remove employee":
             removeEmployee();
             break;
         }
@@ -72,9 +72,9 @@ function viewEmployees() {
     connection.query(query, function (err, optionChoice) {
         console.log("\n Employees in database \n");
         console.table(optionChoice);
+        employeeOptions();
     });
     
-    employeeOptions();
 
 }
 
@@ -83,9 +83,9 @@ function viewRoles() {
     connection.query("SELECT * from role", function (err, optionChoice) {
         console.log("\n Employee Roles in database \n");
         console.table(optionChoice);
+        employeeOptions();
     });
     
-    employeeOptions();
 
 }
 // Allow user to view departments
@@ -93,9 +93,9 @@ function viewDepartments() {
     connection.query("SELECT * from department", function (err, optionChoice) {
         console.log("\n Departments in database \n");
         console.table(optionChoice);
+        employeeOptions();
     });
     
-    employeeOptions();
 
 }
 
@@ -129,9 +129,9 @@ function addEmployee() {
                         throw err;
                     }
                     console.table(optionChoice);
+                    employeeOptions();
                 }
             );
-            employeeOptions();
         });
     }
 
@@ -213,9 +213,9 @@ function addRole() {
                         throw err;
                     }
                     console.table(optionChoice);
+                    employeeOptions();
                 }
             );
-            employeeOptions();
         });
 }
 
@@ -243,3 +243,4 @@ function addDepartments() {
                 employeeOptions();
         });
 }
+
