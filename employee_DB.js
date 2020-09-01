@@ -41,19 +41,19 @@ async function employeeOptions() {
                 
             case "Add an employee":
             addEmployee();
-            break;      
+                break;      
             
             case "Add employee role":
             addRole();
-            break;
+                break;
 
             case "Add department":
             addDepartments();
-            break;
+                break;
 
             case "Update employee role":
             updateRole();
-            break;
+                break;
 
             // case "Remove employee":
             // removeEmployee();
@@ -106,13 +106,13 @@ function addEmployee() {
             {
                 type: "input",
                 message: "Please enter employee's first name",
-                name: "firstName"
+                name: "firstname"
             },
 
             {
                 type: "input",
                 message: "Please enter employee's last name",
-                name: "lastName"
+                name: "lastname"
             }
         ])
         .then(function (optionChoice) {
