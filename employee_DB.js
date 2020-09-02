@@ -55,9 +55,9 @@ async function employeeOptions() {
             updateRole();
                 break;
 
-            // case "Remove employee":
-            // removeEmployee();
-            // break;
+            case "Remove employee":
+            removeEmployee();
+            break;
         }
     })
         
@@ -139,46 +139,99 @@ function addEmployee() {
 
 function updateRole() {
     let employees = [];
+    let roles = [];
+    connection.query("SELECT * FROM role", function (roleErr, roleChoices) {
     connection.query("SELECT * FROM employee", function (err, optionChoice) {
         for (let i = 0; i < optionChoice.length; i++) {
             let employeeString =
                 optionChoice[i].id + " " + optionChoice[i].first_name + " " + optionChoice[i].last_name;
             employees.push(employeeString);
         }
+        for (let i = 0; i < roleChoices.length; i++) {
+            let roleString =
+            roleChoices[i].id + " " + roleChoices[i].title
+            roles.push(roleString);
+        }
         inquirer
             .prompt([
                 {
                     type: "list",
-                    name: "updateRole",
+                    name: "selectedEmployee",
                     message: "Select employee to update role",
-                    choices: "employees"
+                    choices: employees
                 },
                 {
                     type: "list",
                     message: "select new role",
-                    choices: ["Manager", "Employee"],
+                    choices: roles,
                     name: "newRole"
                 }
             ])
-            .then(function (optionChoice) {
-                console.log("about to update", optionChoice);
+            .then(function ({selectedEmployee, newRole}) {
+
                 const idUpdate = {};
-                idUpdate.employeeId = parseInt(optionChoice.updateRole.split(" ")[0]);
-                if (optionChoice.newrole === "manager") {
-                    idUpdate.role_id = 1;
-                } else if (optionChoice.newrole === "employee") {
-                    idUpdate.role_id = 2;
-                }
+                idUpdate.employeeId = parseInt(selectedEmployee.split(" ")[0]);
+                idUpdate.roleId = parseInt(newRole.split(" ")[0]);
+                
                 connection.query(
                     "UPDATE employee SET role_id = ? WHERE id = ?",
-                    [idUpdate.role_id, idUpdate.employeeId],
+                    [idUpdate.roleId, idUpdate.employeeId],
                     function (err, data) {
+                        console.log("Employee Role Updated");
                         employeeOptions();
                     }
                 );
             });
+        });
     });
 }
+
+//Remove employee
+function removeEmployee() {
+    let employees = [];
+ 
+    connection.query("SELECT * FROM employee", function (err, optionChoice) {
+        for (let i = 0; i < optionChoice.length; i++) {
+            let employeeString =
+                optionChoice[i].id + " " + optionChoice[i].first_name + " " + optionChoice[i].last_name;
+            employees.push(employeeString);
+        }
+       
+        inquirer
+            .prompt([
+                {
+                    type: "list",
+                    name: "selectedEmployee",
+                    message: "Select employee to delete",
+                    choices: employees
+                },
+                
+            ])
+            .then(function ({selectedEmployee, }) {
+                const employeeId = parseInt(selectedEmployee.split(" ")[0]);
+                
+                connection.query(
+                    "UPDATE employee SET manager_id = ? WHERE manager_id = ?",
+                            [null, employeeId],
+                    function (err, data) {
+                        
+                        connection.query(
+                            "DELETE FROM employee WHERE id = ?",
+                    [employeeId],
+                            function (err, data) {
+                                
+                                console.log("Employee Deleted");
+                                employeeOptions();
+                            }
+                        );
+                
+                    }
+                );
+            });
+        });
+
+}
+
 
 // Allow user to add new role
 function addRole() {
