@@ -16,7 +16,7 @@
 <h2>Pull Requests welcome for contribution</h2>
 <hr>
 <p>John Manouse</p>
-<p>Video Link: <a href="https://XXX">Employee Tracker Video</a></p>
+<p>Video Link: <a href="https://drive.google.com/file/d/1mlLZmqAkSMVfbxde7djC0M8qfz1ySkmg/view">Employee Tracker Video</a></p>
 <p>Github: <a href="https://github.com/Mirageg4/Employee-Tracker">Employee-Tracker</a></p>
 
 <hr>
